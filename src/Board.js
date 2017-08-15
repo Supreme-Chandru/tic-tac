@@ -6,6 +6,15 @@ import './index.css';
 import Box from './Box';
 
 
+class BoardRow extends React.Component{
+    render(){
+        return(
+            <div className="Board-row">{this.props.value}</div>
+        );
+    };
+}
+
+
 class Board extends React.Component{
 
     constructor() {
@@ -15,18 +24,34 @@ class Board extends React.Component{
 
     renderBox(i){
         return(
-            <Box
+            <Box key={i}
                 value={this.props.boxes[i]}
-                onClick={() => this.props.onClick(i)}/>
+                onClick={() => this.props.onClick(i)} />
         );
     }
 
     render(){
+        var rows=[];
+        console.log("render");
         for(let row=0; row<3;row++){
+            var boxes = []
             for(let column=0;column<3;column++){
 
+                boxes.push( this.renderBox((row * 3) + column) );
             }
+            console.log(boxes);
+            rows.push(<BoardRow key={row} value={boxes}></BoardRow>);
+
         }
+
+        return (
+            <div>
+                {rows}
+            </div>
+        );
+
+/*
+
         return (
             <div>
 
@@ -47,8 +72,14 @@ class Board extends React.Component{
                 </div>
             </div>
         );
+*/
+
     }
 }
+
+
+
+////////////////////////////////
 
 
 

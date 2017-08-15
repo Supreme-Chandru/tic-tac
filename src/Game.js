@@ -60,7 +60,7 @@ class Game extends React.Component{
             const desc = index == 0 ? 'Game Started' : 'Move #'+index ;
             return (
                 <li>
-                    <a
+                    <a key={index}
                         href="#"
                         onClick={() => this.jumpto(index)}>{desc}
                     </a>
